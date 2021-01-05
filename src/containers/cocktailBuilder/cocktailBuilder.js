@@ -30,10 +30,6 @@ class CocktailBuilder extends Component {
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedKeyword}`)
       .then(response => {
         response.data.drinks.map(cocktail => {
-          // console.log(cocktail)
-          // cocktailArray.push(cocktail)
-          // return cocktailArray;
-          // console.log(cocktail)
           cocktailArray.push({
             id: cocktail.idDrink, 
             name: cocktail.strDrink,
@@ -50,6 +46,9 @@ class CocktailBuilder extends Component {
           return cocktailArray;
         })
       })
+      .catch(error => {
+        console.log(error)
+      })
     console.log(cocktailArray)
     this.setState({
       ...this.state,
@@ -58,24 +57,26 @@ class CocktailBuilder extends Component {
   }
 
 
-  render() {    
+  render() {  
+    let cocktailCont = <p style={{color:'white'}}>please fetch cocktails</p>;
+    if (this.state.ingredients) {
+      cocktailCont = this.state.cocktails.map(cocktail => (
+        <Cocktail
+          key={cocktail.name}
+          name={cocktail.name}
+          picture={cocktail.picture}
+          glass={cocktail.glass}
+          instruction={cocktail.instruction}
+          ingredients={cocktail.ingredient}
+        />
+      ))
+    }
+
+
     return (
       <div>
         <Button text="Fetch Cocktails" clicked={this.fetchHandler}/>
-        {
-          this.state.cocktails.map(cocktail => {
-            return <Cocktail
-              key={cocktail.name}
-              name={cocktail.name}
-              picture={cocktail.picture}
-              glass={cocktail.glass}
-              instruction={cocktail.instruction}
-              ingredient={cocktail.ingredient}
-            />
-          })
-        }
-        <Cocktail 
-        />
+        {cocktailCont}
       </div>
     );
   }

@@ -2,20 +2,31 @@ import React from 'react';
 import classes from './cocktail.module.css';
 
 const cocktail = (props) => {
+  console.log(props)
+
+  let ingredients = Object.keys(props.ingredients)
+    .map(ingredient => {
+      return <li 
+        key={ingredient}>
+          {ingredient}
+        </li>
+    //flatten the array
+    }).reduce((arr, el) => {
+      return arr.concat(el)
+    }, [])
+  
   return (
     <div className={classes.CocktailFlex}>
       <div className={classes.CocktailFlexLeft}>
-        <img src="https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg/preview" alt="cocktail img" className={classes.CocktailImg}/>
+        <img src={props.picture} alt="cocktail img" className={classes.CocktailImg}/>
       </div>
       <div className={classes.CocktailFlexRight}>
-        <p>Name</p>
+        <p>{props.name}</p>
         <ul>
-          <li>ingredients</li>
-          <li>ingredients</li>
-          <li>ingredients</li>
+          {ingredients}
         </ul>
-        <p>instructions</p>
-        <p>glass</p>
+        <p>{props.instructions}</p>
+        <p>{props.glass}</p>
       </div>
     </div>
   );

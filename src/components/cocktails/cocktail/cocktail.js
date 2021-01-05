@@ -31,7 +31,7 @@ const Cocktail = (props) => {
       </div>
       <div className={classes.CocktailFlexRight}>
         <h3>Instructions:</h3>
-        <p>{props.instruction}</p>
+        <p><em>{props.instruction}</em></p>
       </div>
       <div className={classes.Button}>
         <button onClick={props.deleteCocktail} className={classes.ButtonDelete}> ❌ </button>

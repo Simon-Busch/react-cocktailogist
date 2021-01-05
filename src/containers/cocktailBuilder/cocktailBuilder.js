@@ -37,9 +37,9 @@ class CocktailBuilder extends Component {
           buttonShow: false
         })
       })
-      .then(data => {
-        console.log(data);
-      })
+      // .then(data => {
+      //   console.log(data);
+      // })
       .catch(error => {
         console.log(error)
       })
@@ -58,7 +58,7 @@ class CocktailBuilder extends Component {
     let cocktailCont = null;
     // console.log(this.state.cocktails.length);
     if (this.state.cocktails.length > 0) {
-      console.log(this.state.cocktails)
+      // console.log(this.state.cocktails)
       cocktailCont = this.state.cocktails.map(cocktail => (
           <Cocktail
             key={cocktail.name}

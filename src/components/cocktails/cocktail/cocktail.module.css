@@ -60,8 +60,13 @@
   padding: 8px;
 }
 
+.CocktailFlexRight h3 {
+  font-weight: 300;
+}
+
 .CocktailFlexRight p {
   text-align: justify;
+  font-size: 14px;
 }
 
 .List {

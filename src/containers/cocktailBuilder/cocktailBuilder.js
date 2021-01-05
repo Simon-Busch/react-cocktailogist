@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Cocktail from '../../components/cocktails/cocktail/cocktail';
 import Button from '../../components/UI/button/button';
+import CocktailContainer from '../../hoc/CocktailContainer';
 
 class CocktailBuilder extends Component {
   state = {
@@ -65,7 +66,9 @@ class CocktailBuilder extends Component {
     return (
       <div>
         <Button text="Fetch Cocktails" clicked={this.fetchHandler}/>
-        {cocktailCont}
+        <CocktailContainer >
+          {cocktailCont}
+        </CocktailContainer>
       </div>
     );
   }

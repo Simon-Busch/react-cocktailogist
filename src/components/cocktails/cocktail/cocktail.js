@@ -8,9 +8,9 @@ const Cocktail = (props) => {
     .map(ingredientKey => { // ingredientKey is the ingredient actually (salad ... )
       return [...Array(props.ingredients[ingredientKey])].map(
         // _ as we don't mind about it, we just need the index
-        (_, index) => {
-          return <li key={ingredientKey+index}>
-            {ingredientKey}
+        (ingredient) => {
+          return <li key={ingredient}>
+            {ingredient}
             </li> 
         }
       )
@@ -24,13 +24,16 @@ const Cocktail = (props) => {
       <div className={classes.CocktailFlexLeft}>
         <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>
       </div>
-      <div className={classes.CocktailFlexRight}>
-        <p>{props.name}</p>
-        <ul>
+      <div className={classes.CocktailFlexMiddle}>
+        <h2>{props.name}</h2>
+        <p>🍸{props.glass}</p>
+        <ul className={classes.List}>
           {ingredientItems}
         </ul>
-        <p>{props.instructions}</p>
-        <p>{props.glass}</p>
+      </div>
+      <div className={classes.CocktailFlexRight}>
+        <h3>Instructions:</h3>
+        <p>{props.instruction}</p>
       </div>
     </div>
   );

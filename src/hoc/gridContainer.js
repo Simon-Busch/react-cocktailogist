@@ -1,9 +1,10 @@
 import React from 'react';
+import classes from './gridContainer.module.css';
 
-const gridContainer = () => {
+const gridContainer = (props) => {
   return (
-    <div>
-      
+    <div className={classes.Grid}>
+      {props.children}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 .CocktailFlex {
   width: 80%;
   height: 200px;
-  /* border: 1px solid #ccc; */
   box-shadow:0px 2px 3px 3px rgba(255,255,255, 0.1);
   display: grid;
   grid-template-columns: 200px 3fr 2fr;
@@ -9,6 +8,7 @@
   border-radius: 5px;
   margin: 16px;
   box-sizing: border-box;
+  position: relative;
 }
 
 @media (max-width: 900px) {
@@ -51,7 +51,6 @@
 
 .CocktailFlexMiddle p {
   margin: 0;
-
 }
 
 .CocktailFlexRight {
@@ -61,6 +60,34 @@
   padding: 8px;
 }
 
+.CocktailFlexRight p {
+  text-align: justify;
+}
+
 .List {
   list-style: "✅";
+}
+.Button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.ButtonDelete {
+  font-size: 16px;
+  border:none;
+  background-color: transparent;
+  margin:0;
+  /* padding: 16px; */
+  line-height: 0;
+  color: red;
+  cursor:pointer;
+  transition: all .5s;
+}
+
+.ButtonDelete:hover {
+  font-size: 18px;
+  border: 1px solid yellow;
+  padding: 14px;
+  border-radius: 50px;
 }

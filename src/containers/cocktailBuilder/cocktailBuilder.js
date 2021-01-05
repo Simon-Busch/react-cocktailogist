@@ -43,7 +43,15 @@ class CocktailBuilder extends Component {
       .catch(error => {
         console.log(error)
       })
+  }
 
+  deleteHandle = (id) => {
+    console.log(id)
+    const oldState = this.state.cocktails
+    console.log(oldState)
+    oldState.slice(id, 1)
+    
+    this.setState({oldState})
   }
 
   render() {
@@ -54,11 +62,13 @@ class CocktailBuilder extends Component {
       cocktailCont = this.state.cocktails.map(cocktail => (
           <Cocktail
             key={cocktail.name}
+            id={cocktail.idDrink}
             name={cocktail.name}
             picture={cocktail.picture}
             glass={cocktail.glass}
             instruction={cocktail.instruction}
             ingredients={cocktail.ingredient}
+            deleteCocktail={() => this.deleteHandle(cocktail.idDrink)}
           />
       ))
     } else {

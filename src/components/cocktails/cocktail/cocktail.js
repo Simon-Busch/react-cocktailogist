@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './cocktail.module.css';
+import Button from '../../UI/button/button';
 
 const Cocktail = (props) => {
 
@@ -15,7 +16,7 @@ const Cocktail = (props) => {
     }).reduce((arr, el) => {
       return arr.concat(el)
     }, [])
-  
+
   return (
     <div className={classes.CocktailFlex}>
       <div className={classes.CocktailFlexLeft}>
@@ -32,6 +33,9 @@ const Cocktail = (props) => {
         <h3>Instructions:</h3>
         <p>{props.instruction}</p>
       </div>
+      <div className={classes.Button}>
+        <button onClick={props.deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
+        </div>
     </div>
   );
 };

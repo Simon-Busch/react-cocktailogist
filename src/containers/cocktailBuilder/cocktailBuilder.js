@@ -6,21 +6,22 @@ import Button from '../../components/UI/button/button';
 
 class CocktailBuilder extends Component {
   state = {
-    cocktails: {
-      cocktail: {
-        id: '', 
-        name: '',
-        picture: '',
-        glass: '',
-        instruction: '',
-        ingredient: {
-          firstIng: '',
-          secondIng: '',
-          thirdIng: '',
-          fourthIng: ''
-        }
-      }
-    }
+    cocktails: []
+    // {
+    //   cocktail: {
+    //     id: '', 
+    //     name: '',
+    //     picture: '',
+    //     glass: '',
+    //     instruction: '',
+    //     ingredient: {
+    //       firstIng: '',
+    //       secondIng: '',
+    //       thirdIng: '',
+    //       fourthIng: ''
+    //     }
+    //   }
+    // }
   }
 
   fetchHandler = () => {
@@ -50,14 +51,10 @@ class CocktailBuilder extends Component {
         })
       })
     console.log(cocktailArray)
-    cocktailArray.forEach(cocktail => {
-      console.log(cocktail)
-      this.setState({
-        ...this.state,
-        cocktail: cocktail
-      })
+    this.setState({
+      ...this.state,
+      cocktails: cocktailArray
     })
-    
   }
 
 
@@ -65,20 +62,23 @@ class CocktailBuilder extends Component {
     return (
       <div>
         <Button text="Fetch Cocktails" clicked={this.fetchHandler}/>
-        <Cocktail />
-        
+        {
+          this.state.cocktails.map(cocktail => {
+            return <Cocktail
+              key={cocktail.name}
+              name={cocktail.name}
+              picture={cocktail.picture}
+              glass={cocktail.glass}
+              instruction={cocktail.instruction}
+              ingredient={cocktail.ingredient}
+            />
+          })
+        }
+        <Cocktail 
+        />
       </div>
     );
   }
 }
 
 export default CocktailBuilder;
-
-// cocktail : 
-//   id:
-//   name: 
-//   ingredient: {}
-//   picture:
-//   glass:
-//   instruction:
-  

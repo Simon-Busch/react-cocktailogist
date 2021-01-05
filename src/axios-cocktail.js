@@ -5,5 +5,3 @@ const instance = axios.create({
 })
 
 export default instance
-
-// https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita

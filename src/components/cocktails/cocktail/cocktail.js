@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './cocktail.module.css';
 
-const cocktail = (props) => {
-  console.log(props)
+const Cocktail = (props) => {
+  // console.log(props)
 
   let ingredients = Object.keys(props.ingredients)
     .map(ingredient => {
@@ -10,7 +10,6 @@ const cocktail = (props) => {
         key={ingredient}>
           {ingredient}
         </li>
-    //flatten the array
     }).reduce((arr, el) => {
       return arr.concat(el)
     }, [])
@@ -18,7 +17,7 @@ const cocktail = (props) => {
   return (
     <div className={classes.CocktailFlex}>
       <div className={classes.CocktailFlexLeft}>
-        <img src={props.picture} alt="cocktail img" className={classes.CocktailImg}/>
+        <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>
       </div>
       <div className={classes.CocktailFlexRight}>
         <p>{props.name}</p>
@@ -32,14 +31,4 @@ const cocktail = (props) => {
   );
 };
 
-export default cocktail;
-
-
-// cocktail : 
-//   id:
-//   name: 
-//   ingredient: {}
-//   picture:
-//   glass:
-//   instruction:
-  
+export default Cocktail;

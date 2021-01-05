@@ -7,21 +7,6 @@ import Button from '../../components/UI/button/button';
 class CocktailBuilder extends Component {
   state = {
     cocktails: []
-    // {
-    //   cocktail: {
-    //     id: '', 
-    //     name: '',
-    //     picture: '',
-    //     glass: '',
-    //     instruction: '',
-    //     ingredient: {
-    //       firstIng: '',
-    //       secondIng: '',
-    //       thirdIng: '',
-    //       fourthIng: ''
-    //     }
-    //   }
-    // }
   }
 
   fetchHandler = () => {
@@ -29,7 +14,7 @@ class CocktailBuilder extends Component {
     const cocktailArray = []
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedKeyword}`)
       .then(response => {
-        response.data.drinks.map(cocktail => {
+        response.data.drinks.forEach(cocktail => {
           cocktailArray.push({
             id: cocktail.idDrink, 
             name: cocktail.strDrink,
@@ -43,35 +28,39 @@ class CocktailBuilder extends Component {
               fourthIng: cocktail.strIngredient4
             }
           })
-          return cocktailArray;
         })
+        this.setState({
+          ...this.state,
+          cocktails: cocktailArray
+        })
+      })
+      .then(data => {
+        console.log(data);
       })
       .catch(error => {
         console.log(error)
       })
-    console.log(cocktailArray)
-    this.setState({
-      ...this.state,
-      cocktails: cocktailArray
-    })
+
   }
 
-
-  render() {  
-    let cocktailCont = <p style={{color:'white'}}>please fetch cocktails</p>;
-    if (this.state.ingredients) {
+  render() {
+    let cocktailCont = null;
+    // console.log(this.state.cocktails.length);
+    if (this.state.cocktails.length > 0) {
+      console.log(this.state.cocktails)
       cocktailCont = this.state.cocktails.map(cocktail => (
-        <Cocktail
-          key={cocktail.name}
-          name={cocktail.name}
-          picture={cocktail.picture}
-          glass={cocktail.glass}
-          instruction={cocktail.instruction}
-          ingredients={cocktail.ingredient}
-        />
+          <Cocktail
+            key={cocktail.name}
+            name={cocktail.name}
+            picture={cocktail.picture}
+            glass={cocktail.glass}
+            instruction={cocktail.instruction}
+            ingredients={cocktail.ingredient}
+          />
       ))
+    } else {
+      cocktailCont = <p style={{color:'white'}}>please fetch cocktails</p>
     }
-
 
     return (
       <div>

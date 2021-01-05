@@ -35,6 +35,8 @@
   font-weight: 300;
   font-size: 64px;
   background-color: rgba(0,0,0, .4);
+  text-transform: uppercase;
+  padding: 8px;
 }
 
 .Subtitle {
@@ -43,4 +45,6 @@
   font-weight: 300;
   font-size: 32px;
   background-color: rgba(0,0,0, .4);
+  text-transform: uppercase;
+  padding: 8px;
 }

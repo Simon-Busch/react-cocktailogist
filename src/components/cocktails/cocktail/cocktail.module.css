@@ -1,0 +1,31 @@
+.CocktailFlex {
+  width: 500px;
+  height: 300px;
+  /* border: 1px solid #ccc; */
+  box-shadow:0px 2px 3px 3px rgba(255, 255, 0, 0.137);
+  display: grid;
+  grid-template-columns: 200px auto;
+  margin-left: 16px;
+  border-radius: 5px;
+}
+
+.CocktailFlexLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+
+}
+
+.CocktailImg {
+  border-radius: 5px;
+  height: 100%;
+  width:100%;
+  object-fit: cover;
+}
+
+.CocktailFlexRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

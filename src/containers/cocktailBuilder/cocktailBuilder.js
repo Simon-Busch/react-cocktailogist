@@ -7,7 +7,8 @@ import CocktailContainer from '../../hoc/CocktailContainer';
 
 class CocktailBuilder extends Component {
   state = {
-    cocktails: []
+    cocktails: [],
+    buttonShow: true
   }
 
   fetchHandler = () => {
@@ -32,7 +33,8 @@ class CocktailBuilder extends Component {
         })
         this.setState({
           ...this.state,
-          cocktails: cocktailArray
+          cocktails: cocktailArray,
+          buttonShow: false
         })
       })
       .then(data => {
@@ -65,8 +67,9 @@ class CocktailBuilder extends Component {
 
     return (
       <div>
-        <Button text="Fetch Cocktails" clicked={this.fetchHandler}/>
+        
         <CocktailContainer >
+          {this.state.buttonShow ? <Button text="Fetch Cocktails" clicked={this.fetchHandler}/> : null}
           {cocktailCont}
         </CocktailContainer>
       </div>

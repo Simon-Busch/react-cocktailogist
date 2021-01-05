@@ -11,6 +11,12 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 900px) {
+  .CocktailFlex {
+    width: 100%;
+  }
+}
+
 .CocktailFlexLeft {
   display: flex;
   justify-content: center;
@@ -52,6 +58,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 8px;
 }
 
 .List {

@@ -1,11 +1,13 @@
 import React from 'react';
 import classes from './cocktail.module.css';
+
 import { withRouter } from 'react-router-dom';
+import { useLocation, useParams } from "react-router";
+
 
 const Cocktail = (props) => {
-  console.log(props)
-  console.log('coucou') 
-
+  const state = useLocation();
+  console.log(state)
   // let ingredientItems = Object.keys(props.ingredients)
   //   .map(ingredientKey => {
   //     return [...Array(props.ingredients[ingredientKey])].map(

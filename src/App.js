@@ -11,7 +11,11 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={CocktailBuilder}/>
-          <Route path="/:id" exact component={Cocktail}/>
+          <Route path="/:id" exact 
+            render={(props) => (
+            <Cocktail {...props}/>
+          )}
+          />
         </Switch>
       </BrowserRouter>
     </div>
@@ -19,3 +23,4 @@ function App() {
 }
 
 export default App;
+

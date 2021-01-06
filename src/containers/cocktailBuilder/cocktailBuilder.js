@@ -4,11 +4,17 @@ import axios from 'axios'
 import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer';
-import { withRouter, Switch, Route } from 'react-router-dom';
+
 import classes from './cocktailBuilder.module.css';
 import Cocktail from '../../components/cocktails/cocktail/cocktail';
-
 import Input from '../../components/UI/input/input';
+
+//routing
+import { withRouter, Switch, Route } from 'react-router-dom';
+
+//redux
+import { connect } from 'react-redux'
+
 
 class CocktailBuilder extends Component {
   
@@ -122,4 +128,20 @@ class CocktailBuilder extends Component {
   }
 }
 
-export default withRouter(CocktailBuilder);
+
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    cocktails: state.cocktails
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(CocktailBuilder));

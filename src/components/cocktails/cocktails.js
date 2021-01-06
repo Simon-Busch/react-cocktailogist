@@ -1,36 +1,23 @@
 import React from 'react';
 import classes from './cocktails.module.css';
-import { withRouter, Link, Route } from 'react-router-dom'
-import Cocktail from './cocktail/cocktail';
-
+import { withRouter, Switch, Route, Link } from 'react-router-dom'
+// import Cocktail from './cocktail/cocktail';
 
 const cocktails = (props) => {
-  console.log(props);
-  
-  let ingredientItems = Object.keys(props.ingredients)
-    .map(ingredientKey => {
-      return [...Array(props.ingredients[ingredientKey])].map(
-        (ingredient) => {
-          return <li key={ingredient}>
-            {ingredient}
-            </li> 
-        }
-      )
-    }).reduce((arr, el) => {
-      return arr.concat(el)
-    }, [])
-
+  // console.log(props);
   return (
-    <div className={classes.CocktailFlex}>
-      <div className={classes.CocktailTop}>
-        <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>
+    <Link to={'/cocktails/' + props.id}>
+      <div className={classes.CocktailFlex}>
+        <div className={classes.CocktailTop}>
+          <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>
+        </div>
+        <div className={classes.CocktailBottom}>
+          <h2>
+          {props.name}
+          </h2>
+        </div>
       </div>
-      <div className={classes.CocktailBottom}>
-        <h2>
-        {props.name}
-        </h2>
-      </div>
-    </div>
+    </Link>
   )
 };
 

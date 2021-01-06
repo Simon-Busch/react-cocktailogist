@@ -15,8 +15,8 @@ const input = (props) => {
         <option value="champagne">
           Champagne
         </option>
-        <option value="rhum">
-          Rhum
+        <option value="rum">
+          Rum
         </option>
         <option value="gin">
           Gin

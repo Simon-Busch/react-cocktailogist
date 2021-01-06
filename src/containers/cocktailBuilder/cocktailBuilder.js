@@ -11,6 +11,7 @@ import Cocktail from '../../components/cocktails/cocktail/cocktail';
 import Input from '../../components/UI/input/input';
 
 class CocktailBuilder extends Component {
+  
   state = {
     cocktails: [],
     buttonShow: true,
@@ -43,14 +44,14 @@ class CocktailBuilder extends Component {
           cocktails: cocktailArray,
           buttonShow: false
         })
-        // console.log(cocktailArray)
       })      
       .catch(error => {
         console.log(error)
       })
+      // console.log(cocktailArray)
   }
 
-  sendDataHandler = () => {
+  postDataHandler = () => {
     const currentState = {
       ...this.state
     }
@@ -59,8 +60,9 @@ class CocktailBuilder extends Component {
       .catch(error => console.log(error))
   }
 
+  // TO DO
   deleteHandle = (id) => {
-    console.log(id)
+    // console.log(id)
     const oldState = this.state.cocktails
     console.log(oldState)
     oldState.slice(id, 1)
@@ -76,19 +78,27 @@ class CocktailBuilder extends Component {
     })
   }
 
+  cocktailNavigationHandler = (id) => {
+    console.log(id)
+    console.log(this.props.history)
+    // this.props.history.push('/post/' + id);
+  }
+
   render() {
+    // console.log(this.props)
     let cocktailCont = null;
     if (this.state.cocktails.length > 0) {
       cocktailCont = this.state.cocktails.map(cocktail => (
           <Cocktails {...this.props}
+            click={this.cocktailNavigationHandler}
             key={cocktail.name}
-            id={cocktail.idDrink}
+            id={cocktail.id}
             name={cocktail.name}
             picture={cocktail.picture}
             glass={cocktail.glass}
             instruction={cocktail.instruction}
             ingredients={cocktail.ingredient}
-            deleteCocktail={() => this.deleteHandle(cocktail.idDrink)}
+            deleteCocktail={() => this.deleteHandle(cocktail.id)}
           />
       ))
     } else {
@@ -98,10 +108,10 @@ class CocktailBuilder extends Component {
     return (
       <Fragment>
         <div style={{textAlign:'center'}}>
-          <Button text="Send to firebase" clicked={this.sendDataHandler} btnType="Main"/>
+          <Button text="Send to firebase" clicked={this.postDataHandler} btnType="Main"/>
           <div className={classes.Top}>
             <Input label="Select an option" change={this.inputHandler}/>
-            {this.state.buttonShow ? <Button text="Start 🚀" clicked={this.fetchHandler(this.state.inputValue)} btnType="Main"/> : null}
+            {this.state.buttonShow ? <Button text="Find your 🍸" clicked={this.fetchHandler(this.state.inputValue)} btnType="Main"/> : null}
           </div>
           <CocktailContainer >
             {cocktailCont}

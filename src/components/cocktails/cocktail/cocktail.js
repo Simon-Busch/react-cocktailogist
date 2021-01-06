@@ -40,7 +40,6 @@ const Cocktail = (props) => {
           </div>
       </div>
     </div>
-
   );
 };
 

@@ -13,13 +13,14 @@ import Input from '../../components/UI/input/input';
 import { withRouter, Switch, Route } from 'react-router-dom';
 
 //redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import * as actionType from '../../store/action';
 
 
 class CocktailBuilder extends Component {
   
   state = {
-    cocktails: [],
+    // cocktails: [],
     buttonShow: true,
     inputValue: null
   }
@@ -57,9 +58,9 @@ class CocktailBuilder extends Component {
       // console.log(cocktailArray)
   }
 
-  componentDidMount () {
-    this.fetchHandler('cocktail')
-  }
+  // componentDidMount () {
+  //   this.fetchHandler('cocktail')
+  // }
 
   postDataHandler = () => {
     const currentState = {
@@ -91,8 +92,8 @@ class CocktailBuilder extends Component {
   render() {
     // console.log(this.props)
     let cocktailCont = null;
-    if (this.state.cocktails.length > 0) {
-      cocktailCont = this.state.cocktails.map(cocktail => (
+    if (this.props.cocktails.length > 0) {
+      cocktailCont = this.props.cocktails.map(cocktail => (
           <Cocktails {...this.props}
             key={cocktail.name}
             id={cocktail.id}
@@ -140,8 +141,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    
+    onFetching: (IngName) => dispatch({type: actionType.FETCH_COCKTAILS, cocktailName: IngName})
   }
 }
+// actionType
 
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(CocktailBuilder));

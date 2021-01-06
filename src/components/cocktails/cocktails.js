@@ -8,15 +8,13 @@ const cocktails = (props) => {
 
   return (
     <Fragment>
-    {/* 12418 */}
-      {/* <Link to={`/${props.id}`}> */}
-      <Link to= {{
+      <Link to={`/${props.id}`}>
+      {/* <Link to= {{
         pathname: '/12418',
         state: {
           cocktails: props
         }
-
-      }}>
+      }}> */}
         <div className={classes.CocktailFlex}>
           <div className={classes.CocktailTop}>
             <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>

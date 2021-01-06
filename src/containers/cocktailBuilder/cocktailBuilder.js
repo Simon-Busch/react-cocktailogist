@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import axiosFireBase from '../../axios-cocktail';
 import axios from 'axios'
-import Cocktail from '../../components/cocktails/cocktail/cocktail';
+import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer';
 
@@ -62,7 +62,7 @@ class CocktailBuilder extends Component {
     if (this.state.cocktails.length > 0) {
       // console.log(this.state.cocktails)
       cocktailCont = this.state.cocktails.map(cocktail => (
-          <Cocktail
+          <Cocktails
             key={cocktail.name}
             id={cocktail.idDrink}
             name={cocktail.name}

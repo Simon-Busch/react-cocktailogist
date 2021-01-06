@@ -12,7 +12,7 @@ const header = () => {
           <h1 className={classes.Title}>Welcome to Cocktailogist</h1>
         </div>
         <div>
-          <p className={classes.Subtitle}>Build your cocktail</p>
+          <p className={classes.Subtitle}>Find your cocktail</p>
         </div>
       </div>
     </div>

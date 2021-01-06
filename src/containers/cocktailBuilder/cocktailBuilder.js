@@ -5,7 +5,7 @@ import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer';
 import { withRouter, Switch, Route } from 'react-router-dom';
-// import classes from './cocktailBuilder.module.css';
+import classes from './cocktailBuilder.module.css';
 import Cocktail from '../../components/cocktails/cocktail/cocktail';
 
 import Input from '../../components/UI/input/input';
@@ -17,8 +17,8 @@ class CocktailBuilder extends Component {
     inputValue: null
   }
 
-  fetchHandler = () => {
-    const searchedKeyword = 'cocktail'
+  fetchHandler = (searchedKeyword) => {
+    // const searchedKeyword = 'cocktail'
     const cocktailArray = []
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedKeyword}`)
       .then(response => {
@@ -69,14 +69,16 @@ class CocktailBuilder extends Component {
   }
 
   inputHandler = (event) =>  {
-    console.log(event.target.value)
+    this.setState({
+      ...this.state,
+      inputValue: event.target.value,
+      buttonShow: true
+    })
   }
 
   render() {
     let cocktailCont = null;
-    // console.log(this.state.cocktails.length);
     if (this.state.cocktails.length > 0) {
-      // console.log(this.state.cocktails)
       cocktailCont = this.state.cocktails.map(cocktail => (
           <Cocktails {...this.props}
             key={cocktail.name}
@@ -96,9 +98,11 @@ class CocktailBuilder extends Component {
     return (
       <Fragment>
         <div style={{textAlign:'center'}}>
-        <Button text="Send to firebase" clicked={this.sendDataHandler} btnType="Main"/>
-        <Input label="Select your cocktail" onChange={(event) => this.inputHandler(event)}/>
-          {this.state.buttonShow ? <Button text="Fetch Cocktails" clicked={this.fetchHandler} btnType="Main"/> : null}
+          <Button text="Send to firebase" clicked={this.sendDataHandler} btnType="Main"/>
+          <div className={classes.Top}>
+            <Input label="Select an option" change={this.inputHandler}/>
+            {this.state.buttonShow ? <Button text="Start 🚀" clicked={this.fetchHandler(this.state.inputValue)} btnType="Main"/> : null}
+          </div>
           <CocktailContainer >
             {cocktailCont}
           </CocktailContainer>

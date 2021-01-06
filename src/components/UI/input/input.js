@@ -4,16 +4,40 @@ import classes from './input.module.css'
 const input = (props) => {
   return (
     <div className={classes.Input}>
-      <label className={classes.Label}>{props.label}</label>
-      <select className={classes.InputElement} >
+      {/* <label className={classes.Label}>{props.label}</label> */}
+      <select className={classes.InputElement} onChange={props.change} >
         <option value="cocktail">
-          cocktail
+          Cocktail
         </option>
         <option value="mojito">
-          mojito
+          Mojito
         </option>
         <option value="champagne">
-          champagne
+          Champagne
+        </option>
+        <option value="rhum">
+          Rhum
+        </option>
+        <option value="gin">
+          Gin
+        </option>
+        <option value="whisky">
+          Whisky
+        </option>
+        <option value="banana">
+          Banana
+        </option>
+        <option value="vodka">
+          Vodka
+        </option>
+        <option value="raspberry">
+          Raspberry
+        </option>
+        <option value="strawberry">
+          Strawberry
+        </option>
+        <option value="absinth">
+          Absinth
         </option>
       </select>
     </div>

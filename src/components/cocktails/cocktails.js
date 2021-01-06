@@ -1,11 +1,11 @@
 import React from 'react';
 import classes from './cocktails.module.css';
-import { withRouter } from 'react-router-dom'
-// import Cocktail from './cocktail/cocktail';
+import { withRouter, Link, Route } from 'react-router-dom'
+import Cocktail from './cocktail/cocktail';
 
 
 const cocktails = (props) => {
-  // console.log(props);
+  console.log(props);
   
   let ingredientItems = Object.keys(props.ingredients)
     .map(ingredientKey => {
@@ -30,7 +30,6 @@ const cocktails = (props) => {
         {props.name}
         </h2>
       </div>
-      {/* <Cocktail {...props}/> */}
     </div>
   )
 };

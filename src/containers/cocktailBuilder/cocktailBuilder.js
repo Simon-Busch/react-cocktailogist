@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
-// import axiosFireBase from '../../axios-cocktail';
+import React, { Component, Fragment } from 'react';
+import axiosFireBase from '../../axios-cocktail';
 import axios from 'axios'
 import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer';
-import { withRouter } from 'react-router-dom';
-import classes from './cocktailBuilder.module.css';
+import { withRouter, Switch, Route } from 'react-router-dom';
+// import classes from './cocktailBuilder.module.css';
+import Cocktail from '../../components/cocktails/cocktail/cocktail';
 
+import Input from '../../components/UI/input/input';
 
 class CocktailBuilder extends Component {
   state = {
     cocktails: [],
-    buttonShow: true
+    buttonShow: true,
+    inputValue: null
   }
 
   fetchHandler = () => {
@@ -35,21 +38,25 @@ class CocktailBuilder extends Component {
             }
           })
         })
-        // console.log(cocktailArray)
         this.setState({
           ...this.state,
           cocktails: cocktailArray,
           buttonShow: false
         })
         // console.log(cocktailArray)
-      })
-      // .then(data => {
-      //   console.log(data);
-      // })
-      
+      })      
       .catch(error => {
         console.log(error)
       })
+  }
+
+  sendDataHandler = () => {
+    const currentState = {
+      ...this.state
+    }
+    axiosFireBase.post('/cocktails.json', currentState)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
   }
 
   deleteHandle = (id) => {
@@ -59,6 +66,10 @@ class CocktailBuilder extends Component {
     oldState.slice(id, 1)
     
     this.setState({oldState})
+  }
+
+  inputHandler = (event) =>  {
+    console.log(event.target.value)
   }
 
   render() {
@@ -83,12 +94,19 @@ class CocktailBuilder extends Component {
     }
 
     return (
-      <div style={{textAlign:'center'}}>
-        {this.state.buttonShow ? <Button text="Fetch Cocktails" clicked={this.fetchHandler} btnType="Main"/> : null}
-        <CocktailContainer >
-          {cocktailCont}
-        </CocktailContainer>
-      </div>
+      <Fragment>
+        <div style={{textAlign:'center'}}>
+        <Button text="Send to firebase" clicked={this.sendDataHandler} btnType="Main"/>
+        <Input label="Select your cocktail" onChange={(event) => this.inputHandler(event)}/>
+          {this.state.buttonShow ? <Button text="Fetch Cocktails" clicked={this.fetchHandler} btnType="Main"/> : null}
+          <CocktailContainer >
+            {cocktailCont}
+          </CocktailContainer>
+        </div>
+        <Switch>
+          <Route path="/cocktails/:id" component={Cocktail} />
+        </Switch>
+      </Fragment>
     );
   }
 }

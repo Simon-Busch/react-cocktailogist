@@ -51,6 +51,10 @@ class CocktailBuilder extends Component {
       // console.log(cocktailArray)
   }
 
+  componentDidMount () {
+    this.fetchHandler('cocktail')
+  }
+
   postDataHandler = () => {
     const currentState = {
       ...this.state
@@ -78,19 +82,12 @@ class CocktailBuilder extends Component {
     })
   }
 
-  cocktailNavigationHandler = (id) => {
-    console.log(id)
-    console.log(this.props.history)
-    // this.props.history.push('/post/' + id);
-  }
-
   render() {
     // console.log(this.props)
     let cocktailCont = null;
     if (this.state.cocktails.length > 0) {
       cocktailCont = this.state.cocktails.map(cocktail => (
           <Cocktails {...this.props}
-            click={this.cocktailNavigationHandler}
             key={cocktail.name}
             id={cocktail.id}
             name={cocktail.name}
@@ -98,7 +95,7 @@ class CocktailBuilder extends Component {
             glass={cocktail.glass}
             instruction={cocktail.instruction}
             ingredients={cocktail.ingredient}
-            deleteCocktail={() => this.deleteHandle(cocktail.id)}
+            // deleteCocktail={() => this.deleteHandle(cocktail.id)}
           />
       ))
     } else {

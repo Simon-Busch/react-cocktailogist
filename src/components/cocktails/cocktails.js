@@ -1,12 +1,13 @@
 import React from 'react';
 import classes from './cocktails.module.css';
 import { withRouter, Switch, Route, Link } from 'react-router-dom'
-// import Cocktail from './cocktail/cocktail';
+import Cocktail from './cocktail/cocktail';
 
 const cocktails = (props) => {
   // console.log(props);
+
   return (
-    <Link to={'/cocktails/' + props.id}>
+    <Link to={'/' + props.id} {...props}>
       <div className={classes.CocktailFlex}>
         <div className={classes.CocktailTop}>
           <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>

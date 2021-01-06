@@ -4,7 +4,8 @@ import axios from 'axios'
 import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer';
-
+import { withRouter } from 'react-router-dom';
+import classes from './cocktailBuilder.module.css';
 
 
 class CocktailBuilder extends Component {
@@ -19,6 +20,7 @@ class CocktailBuilder extends Component {
     axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchedKeyword}`)
       .then(response => {
         response.data.drinks.forEach(cocktail => {
+          
           cocktailArray.push({
             id: cocktail.idDrink, 
             name: cocktail.strDrink,
@@ -33,15 +35,18 @@ class CocktailBuilder extends Component {
             }
           })
         })
+        // console.log(cocktailArray)
         this.setState({
           ...this.state,
           cocktails: cocktailArray,
           buttonShow: false
         })
+        // console.log(cocktailArray)
       })
       // .then(data => {
       //   console.log(data);
       // })
+      
       .catch(error => {
         console.log(error)
       })
@@ -62,7 +67,7 @@ class CocktailBuilder extends Component {
     if (this.state.cocktails.length > 0) {
       // console.log(this.state.cocktails)
       cocktailCont = this.state.cocktails.map(cocktail => (
-          <Cocktails
+          <Cocktails {...this.props}
             key={cocktail.name}
             id={cocktail.idDrink}
             name={cocktail.name}
@@ -78,10 +83,9 @@ class CocktailBuilder extends Component {
     }
 
     return (
-      <div>
-        
+      <div style={{textAlign:'center'}}>
+        {this.state.buttonShow ? <Button text="Fetch Cocktails" clicked={this.fetchHandler} btnType="Main"/> : null}
         <CocktailContainer >
-          {this.state.buttonShow ? <Button text="Fetch Cocktails" clicked={this.fetchHandler}/> : null}
           {cocktailCont}
         </CocktailContainer>
       </div>
@@ -89,4 +93,4 @@ class CocktailBuilder extends Component {
   }
 }
 
-export default CocktailBuilder;
+export default withRouter(CocktailBuilder);

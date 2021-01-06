@@ -1,16 +1,18 @@
 import './App.css';
 import CocktailBuilder from './containers/cocktailBuilder/cocktailBuilder';
 import Header from './components/UI/header/header';
-import { BrowserRouter, Route }from 'react-router-dom';
+import { Route, Switch }from 'react-router-dom';
+import Cocktail from '../src/components/cocktails/cocktail/cocktail';
 
 function App() {
   return (
-    <BrowserRouter>
-      <div>
-        <Header />
-          <Route path="/" exact component={CocktailBuilder}/>
-      </div>
-    </BrowserRouter>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/" exact component={CocktailBuilder}/>
+        <Route path="/cocktail/:id" exact component={Cocktail}/>
+      </Switch>
+    </div>
   );
 }
 

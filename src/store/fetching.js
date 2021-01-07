@@ -22,9 +22,6 @@ const fetch = () => {
       })
       return cocktailArray
     })
-    // .then(data => {
-    //   console.log(data);
-    // })
     .catch(error => {
       console.log(error)
     })

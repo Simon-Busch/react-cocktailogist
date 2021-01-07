@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
     case actionType.FETCH_COCKTAILS:
       return {
         ...state,
-        ingredients: action
+        cocktails: action.cocktails
       };
     case actionType.TEST:
       console.log('coucou')

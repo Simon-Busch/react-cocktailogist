@@ -62,7 +62,7 @@ class CocktailBuilder extends Component {
   }
 
   // componentDidMount () {
-  //   this.props.onFetching('cocktail')
+  //   this.fetchHandler('cocktail')
   // }
 
   postDataHandler = () => {

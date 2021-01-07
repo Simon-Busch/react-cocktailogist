@@ -1,7 +1,7 @@
 import axios from 'axios';
+
 export const FETCH_COCKTAILS = 'FETCH_COCKTAILS';
 export const TEST = 'TEST';
-
 
 export const test = () => {
   return {
@@ -9,9 +9,12 @@ export const test = () => {
   }
 }
 
-export const fetchedCocktails = () => {
+export const fetchedCocktails = (response ) => {
+  // console.log(response)
+  // array of objects
   return {
-    type: FETCH_COCKTAILS
+    type: FETCH_COCKTAILS,
+    ingredients: response
   }
 }
 
@@ -37,15 +40,22 @@ export const fetchCocktails = () => {
           }
         })
       })
+      // console.log(Object.keys(cocktailArray))
+      let cocktailsArrayFinal = Object.keys(cocktailArray)
+        .map(cocktailKey => {
+            return [...Array(cocktailArray[cocktailKey])]
+        })
+      console.log(cocktailsArrayFinal.flat())
+      //array of cocktails object
+      dispatch(fetchedCocktails(cocktailsArrayFinal.flat()))
     })
     .catch(error => {
       console.log(error)
     })
-    return () => {
-      dispatch(fetchedCocktails)
-    }
   }
 }
+
+
 
 // export const fetchCocktails = (ingredient) => {
 //   return (dispatch) => {

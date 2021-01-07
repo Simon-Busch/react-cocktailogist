@@ -1,8 +1,6 @@
 import * as actionType from './action';
-import axios from 'axios';
-import fetch from './fetching';
-
-
+// import axios from 'axios';
+// import fetch from './fetching';
 
 const initialState = {
   cocktails: [
@@ -23,11 +21,13 @@ const initialState = {
   buttonShow: true
 } 
 
-
 const reducer = (state = initialState, action) => {
   switch (action.type){
     case actionType.FETCH_COCKTAILS:
-      return state;
+      return {
+        ...state,
+        ingredients: action
+      };
     case actionType.TEST:
       console.log('coucou')
       return state;

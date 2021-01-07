@@ -9,12 +9,15 @@ import classes from './cocktailBuilder.module.css';
 import Cocktail from '../../components/cocktails/cocktail/cocktail';
 import Input from '../../components/UI/input/input';
 
+//action
+import * as actionCreators from '../../store/action';
+
 //routing
 import { withRouter, Switch, Route } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
-import * as actionType from '../../store/action';
+// import * as actionType from '../../store/action';
 
 
 class CocktailBuilder extends Component {
@@ -138,8 +141,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetching: () => dispatch({type: actionType.FETCH_COCKTAILS}),
-    onTest: () => dispatch({type: actionType.TEST})
+    onFetching: () => dispatch(actionCreators.fetchCocktails()),
+    onTest: () => dispatch(actionCreators.test())
   }
 }
 // actionType

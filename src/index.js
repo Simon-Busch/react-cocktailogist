@@ -15,9 +15,9 @@ import thunk from 'redux-thunk';
 const logger = store => {
   return next => {
     return action => {
-      console.log('[middleware] dispatching', action);
+      // console.log('[middleware] dispatching', action);
       const result = next(action);
-      console.log('[middleware] dispatching', store.getState())
+      // console.log('[middleware] dispatching', store.getState())
       return result
     } 
   }

@@ -38,10 +38,10 @@ class Cocktail extends Component {
         return [...Array(this.props.cocktails[cktlIndex].ingredient[ingredientKey])].map(
           (ingredient) => {
             return <li key={ingredient}>
-            <em>
+              <em>
               {ingredient}
               </em>
-              </li> 
+            </li> 
           }
         )
       }).reduce((arr, el) => {

@@ -27,45 +27,12 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type){
     case actionType.FETCH_COCKTAILS:
-      console.log('coucou fetching')
-      const cocktailArray = []
-      const fetchHandler = () => {
-        // const searchedKeyword = 'cocktail'
-        axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s='cocktail'`)
-          .then(response => {
-            response.data.drinks.forEach(cocktail => {
-              console.log(cocktail)
-              cocktailArray.push({
-                id: cocktail.idDrink, 
-                name: cocktail.strDrink,
-                picture: cocktail.strDrinkThumb,
-                glass: cocktail.strGlass,
-                instruction: cocktail.strInstructions,
-                ingredient: {
-                  firstIng: cocktail.strIngredient1,
-                  secondIng: cocktail.strIngredient2,
-                  thirdIng: cocktail.strIngredient3,
-                  fourthIng: cocktail.strIngredient4
-                }
-              })
-            })
-          })      
-          .catch(error => {
-            console.log(error)
-          })
-          console.log(cocktailArray)
-        }
-        
-      const newState = Object.keys(cocktailArray)
-      return {
-        ...state,
-        cocktails: newState
-      }
+      return state;
     case actionType.TEST:
       console.log('coucou')
-      return state
+      return state;
     default:
-      return state
+      return state;
   }
 }
 

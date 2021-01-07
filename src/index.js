@@ -5,12 +5,26 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 // import Header from './components/UI/header/header';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from './store/reducer';
+//handle async call
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+
+//middleware
+const logger = store => {
+  return next => {
+    return action => {
+      console.log('[middleware] dispatching', action);
+      const result = next(action);
+      console.log('[middleware] dispatching', store.getState())
+      return result
+    } 
+  }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, composeEnhancers(applyMiddleware(logger, thunk)));
 
 ReactDOM.render(
   <React.StrictMode>

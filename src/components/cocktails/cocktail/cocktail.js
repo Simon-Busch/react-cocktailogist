@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 class Cocktail extends Component {
   
   render() {
-    console.log(this.props.cocktails[0])
+    // console.log(this.props.cocktails[0])
       let ingredientItems = Object.keys(this.props.cocktails[0].ingredient)
         .map(ingredientKey => {
           return [...Array(this.props.cocktails[0].ingredient[ingredientKey])].map(
@@ -49,44 +49,6 @@ class Cocktail extends Component {
     </div>
     )
   }
-
-  // let ingredientItems = Object.keys(this.props.cocktails.ingredients)
-  //   .map(ingredientKey => {
-  //     return [...Array(this.props.cocktails.ingredients[ingredientKey])].map(
-  //       (ingredient) => {
-  //         return <li key={ingredient}>
-  //           {ingredient}
-  //           </li> 
-  //       }
-  //     )
-  //   }).reduce((arr, el) => {
-  //     return arr.concat(el)
-  //   }, [])
-
-  // return (
-    // <div className={classes.CocktailFlex}>
-    //   <div className={classes.CocktailFlexTop}>
-    //     <img src={this.props.cocktails.picture} alt={this.props.cocktails.name} className={classes.CocktailImg}/>
-    //   </div>
-    //   <div className={classes.CocktailFlexBottom}>
-    //     <div className={classes.CocktailFlexMiddle}>
-    //       <h2>{this.props.cocktails.name}</h2>
-    //       <p>🍸{this.props.cocktails.glass}</p>
-    //       <ul className={classes.List}>
-    //         {ingredientItems}
-    //       </ul>
-    //     </div>
-    //     <div className={classes.CocktailFlexRight}>
-    //       <h3>Instructions:</h3>
-    //       <p><em>{this.props.cocktails.instruction}</em></p>
-    //     </div>
-    //     <div className={classes.Button}>
-    //       <button onClick={this.props.cocktails.deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
-    //       </div>
-    //   </div>
-    // </div>
-    
-  // );
 };
 
 const mapStateToProps = (state) => {

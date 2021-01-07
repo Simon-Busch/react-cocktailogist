@@ -1,6 +1,4 @@
 import * as actionType from './action';
-// import axios from 'axios';
-// import fetch from './fetching';
 
 const initialState = {
   cocktails: [
@@ -28,9 +26,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         cocktails: action.cocktails
       };
-    case actionType.TEST:
-      console.log('coucou')
-      return state;
     default:
       return state;
   }

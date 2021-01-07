@@ -24,6 +24,9 @@ const input = (props) => {
         <option value="whisky">
           Whisky
         </option>
+        <option value="smoothie">
+          Smoothie
+        </option>
         <option value="banana">
           Banana
         </option>
@@ -38,6 +41,18 @@ const input = (props) => {
         </option>
         <option value="absinth">
           Absinth
+        </option>
+        <option value="margarita">
+          Margarita
+        </option>
+        <option value="kiwi">
+          Kiwi
+        </option>
+        <option value="blueberry">
+          Blueberry
+        </option>
+        <option value="clove">
+          Clove
         </option>
       </select>
     </div>

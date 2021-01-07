@@ -14,15 +14,14 @@ export const fetchedCocktails = (response ) => {
   // array of objects
   return {
     type: FETCH_COCKTAILS,
-    ingredients: response
+    cocktails: response
   }
 }
 
-export const fetchCocktails = () => {
+export const fetchCocktails = (ingredient) => {
   return (dispatch) => {
-    console.log('coucou fetching');
     const cocktailArray = []
-    axios.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=cocktail')
+    axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${ingredient}`)
     .then(response => {
       response.data.drinks.forEach(cocktail => {
         // console.log(cocktail)
@@ -45,7 +44,8 @@ export const fetchCocktails = () => {
         .map(cocktailKey => {
             return [...Array(cocktailArray[cocktailKey])]
         })
-      console.log(cocktailsArrayFinal.flat())
+        // .flat()
+      // console.log(cocktailsArrayFinal)
       //array of cocktails object
       dispatch(fetchedCocktails(cocktailsArrayFinal.flat()))
     })

@@ -9,41 +9,64 @@ import { connect } from 'react-redux';
 
 class Cocktail extends Component {
   
+  
   render() {
-    // console.log(this.props.cocktails[0])
-      let ingredientItems = Object.keys(this.props.cocktails[0].ingredient)
-        .map(ingredientKey => {
-          return [...Array(this.props.cocktails[0].ingredient[ingredientKey])].map(
-            (ingredient) => {
-              return <li key={ingredient}>
-              <em>
-                {ingredient}
-                </em>
-                </li> 
-            }
-          )
-        }).reduce((arr, el) => {
-          return arr.concat(el)
-        }, [])
+    //get id
+    const id = this.props.match.params.id
+
+    //find index
+    const findIndexInData = (data, property, value) => {
+      let result = -1;
+      data.some((item, i) => {
+          if (item[property] === value) {
+              result = i;
+              return true;
+          }
+      });
+      return result;
+    }
+
+    //return my full cocktail array
+    let cocktailArray = this.props.cocktails
+
+    //return the cocktail to display
+    let cktlIndex = findIndexInData(cocktailArray,'id', id)
+    
+    // return ingredient array
+    let ingredientItems = Object.keys(this.props.cocktails[cktlIndex].ingredient)
+      .map(ingredientKey => {
+        return [...Array(this.props.cocktails[cktlIndex].ingredient[ingredientKey])].map(
+          (ingredient) => {
+            return <li key={ingredient}>
+            <em>
+              {ingredient}
+              </em>
+              </li> 
+          }
+        )
+      }).reduce((arr, el) => {
+        return arr.concat(el)
+      }, [])
+
     return (
       <div className={classes.CocktailFlex}>
         <div className={classes.CocktailFlexLeft}>
-          <img src={this.props.cocktails[0].picture} alt={this.props.cocktails[0].name} className={classes.CocktailImg}/>
+          <img src={this.props.cocktails[cktlIndex].picture} alt={this.props.cocktails[cktlIndex].name} className={classes.CocktailImg}/>
         </div>
         <div className={classes.CocktailFlexRight}>
           <div className={classes.CocktailFlexTop}>
-            <h2>{this.props.cocktails[0].name}</h2>
-            <p>🍸{this.props.cocktails[0].glass}</p>
+            <h2>{this.props.cocktails[cktlIndex].name}</h2>
+            <p>🍸{this.props.cocktails[cktlIndex].glass}</p>
             <ul className={classes.List}>
               {ingredientItems}
             </ul>
           </div>
           <div className={classes.CocktailFlexMiddle}>
             <h3>Instructions:</h3>
-            <p><em>{this.props.cocktails[0].instruction}</em></p>
+            <p><em>{this.props.cocktails[cktlIndex].instruction}</em></p>
           </div>
           <div className={classes.Button}>
-            <button onClick={this.props.cocktails[0].deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
+            <button onClick={this.props.cocktails[cktlIndex].deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
             </div>
         </div>
     </div>

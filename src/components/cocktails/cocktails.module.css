@@ -84,3 +84,7 @@
   padding: 14px;
   border-radius: 50px;
 }
+
+.Link {
+  text-decoration: none;
+}

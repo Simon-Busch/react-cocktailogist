@@ -59,7 +59,7 @@ class CocktailBuilder extends Component {
   }
 
   // componentDidMount () {
-  //   this.fetchHandler('cocktail')
+  //   this.props.onFetching('cocktail')
   // }
 
   postDataHandler = () => {
@@ -115,7 +115,8 @@ class CocktailBuilder extends Component {
           <Button text="Send to firebase" clicked={this.postDataHandler} btnType="Main"/>
           <div className={classes.Top}>
             <Input label="Select an option" change={this.inputHandler}/>
-            {this.state.buttonShow ? <Button text="Find your 🍸" clicked={this.fetchHandler(this.state.inputValue)} btnType="Main"/> : null}
+            <Button text="Find your 🍸" clicked={this.props.onFetching} btnType="Main"/>
+            {/* {this.state.buttonShow ? <Button text="Find your 🍸" clicked={this.props.onFetching()} btnType="Main"/> : null} */}
           </div>
           <CocktailContainer >
             {cocktailCont}
@@ -129,10 +130,6 @@ class CocktailBuilder extends Component {
   }
 }
 
-
-
-
-
 const mapStateToProps = (state) => {
   return {
     cocktails: state.cocktails
@@ -141,7 +138,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetching: (IngName) => dispatch({type: actionType.FETCH_COCKTAILS, cocktailName: IngName})
+    onFetching: () => dispatch({type: actionType.FETCH_COCKTAILS}),
+    onTest: () => dispatch({type: actionType.TEST})
   }
 }
 // actionType

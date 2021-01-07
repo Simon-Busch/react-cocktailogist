@@ -1,15 +1,16 @@
 .CocktailFlex {
-  width: 30%;
-  height: 230px;
+  width: 80vw;
+  height: 60vh;
   box-shadow:0px 2px 3px 3px rgba(255, 255, 255, 0.13);
   display: grid;
-  grid-template-columns: 200px 3fr 2fr;
-  margin-left: 16px;
+  grid-template-columns: 1fr 3fr;
+  /* margin-left: 16px; */
   border-radius: 5px;
-  margin: 16px;
+  margin: auto;
   box-sizing: border-box;
   position: relative;
   background-color: rgb(0, 0, 0);
+  margin-bottom: 36px;
 }
 
 @media (max-width: 900px) {
@@ -23,58 +24,69 @@
   justify-content: center;
   align-items: center;
   padding: 8px;
-  width: 200px;
-  height: 200px;
+  width: 30vw;
+  height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 
 }
 
 .CocktailImg {
   border-radius: 5px;
   object-fit: cover;
-  width: 150px;
-  height: 200px;
+  width: 100%;
+  height: 100%;  
+  transform: scale(1.2);
+  filter:grayscale(2);
+  transition: all .5s;
 }
 
-.CocktailFlexMiddle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.CocktailImg:hover {
+  transform: scale(1.05);
+  filter: none;
 }
-
-.CocktailFlexMiddle h2 {
-  margin: 0;
-  text-transform: uppercase;
-  font-weight: 300;
-  color:yellow;
-}
-
-.CocktailFlexMiddle p {
-  margin: 0;
-}
-
 
 .CocktailFlexRight {
   display: flex;
   flex-direction: column;
+}
+
+.CocktailFlexTop {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 8px;
 }
 
-.CocktailFlexRight h3 {
+.CocktailFlexTop h2 {
+  text-align: center;
   font-weight: 300;
+  color: yellow;
+  text-transform: uppercase;
+  margin-top: 16px;
+  margin-bottom: 0;
 }
 
-.CocktailFlexRight p {
-  text-align: justify;
-  font-size: 14px;
+.CocktailFlexTop p {
+  text-align: center;
 }
-
 
 .List {
-  list-style: "✅";
+  list-style: "✅  ";
+  font-weight: 200;
 }
+
+.CocktailFlexMiddle h3{
+  text-align: center;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.CocktailFlexMiddle p {
+  padding: 16px;
+  letter-spacing: 1px;
+  line-height: 36px;
+}
+
 .Button {
   position: absolute;
   top: 8px;

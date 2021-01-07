@@ -1,16 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './cocktail.module.css';
 
 import { withRouter } from 'react-router-dom';
-import { useLocation, useParams } from "react-router";
+// import { useLocation, useParams } from "react-router";
 
+//redux
+import { connect } from 'react-redux';
 
-const Cocktail = (props) => {
-  const state = useLocation();
-  console.log(state)
-  // let ingredientItems = Object.keys(props.ingredients)
+class Cocktail extends Component {
+  
+  render() {
+    console.log(this.props.cocktails[0])
+      let ingredientItems = Object.keys(this.props.cocktails[0].ingredient)
+        .map(ingredientKey => {
+          return [...Array(this.props.cocktails[0].ingredient[ingredientKey])].map(
+            (ingredient) => {
+              return <li key={ingredient}>
+              <em>
+                {ingredient}
+                </em>
+                </li> 
+            }
+          )
+        }).reduce((arr, el) => {
+          return arr.concat(el)
+        }, [])
+    return (
+      <div className={classes.CocktailFlex}>
+        <div className={classes.CocktailFlexLeft}>
+          <img src={this.props.cocktails[0].picture} alt={this.props.cocktails[0].name} className={classes.CocktailImg}/>
+        </div>
+        <div className={classes.CocktailFlexRight}>
+          <div className={classes.CocktailFlexTop}>
+            <h2>{this.props.cocktails[0].name}</h2>
+            <p>🍸{this.props.cocktails[0].glass}</p>
+            <ul className={classes.List}>
+              {ingredientItems}
+            </ul>
+          </div>
+          <div className={classes.CocktailFlexMiddle}>
+            <h3>Instructions:</h3>
+            <p><em>{this.props.cocktails[0].instruction}</em></p>
+          </div>
+          <div className={classes.Button}>
+            <button onClick={this.props.cocktails[0].deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
+            </div>
+        </div>
+    </div>
+    )
+  }
+
+  // let ingredientItems = Object.keys(this.props.cocktails.ingredients)
   //   .map(ingredientKey => {
-  //     return [...Array(props.ingredients[ingredientKey])].map(
+  //     return [...Array(this.props.cocktails.ingredients[ingredientKey])].map(
   //       (ingredient) => {
   //         return <li key={ingredient}>
   //           {ingredient}
@@ -21,30 +63,36 @@ const Cocktail = (props) => {
   //     return arr.concat(el)
   //   }, [])
 
-  return (
+  // return (
     // <div className={classes.CocktailFlex}>
     //   <div className={classes.CocktailFlexTop}>
-    //     <img src={props.picture} alt={props.name} className={classes.CocktailImg}/>
+    //     <img src={this.props.cocktails.picture} alt={this.props.cocktails.name} className={classes.CocktailImg}/>
     //   </div>
     //   <div className={classes.CocktailFlexBottom}>
     //     <div className={classes.CocktailFlexMiddle}>
-    //       <h2>{props.name}</h2>
-    //       <p>🍸{props.glass}</p>
+    //       <h2>{this.props.cocktails.name}</h2>
+    //       <p>🍸{this.props.cocktails.glass}</p>
     //       <ul className={classes.List}>
     //         {ingredientItems}
     //       </ul>
     //     </div>
     //     <div className={classes.CocktailFlexRight}>
     //       <h3>Instructions:</h3>
-    //       <p><em>{props.instruction}</em></p>
+    //       <p><em>{this.props.cocktails.instruction}</em></p>
     //     </div>
     //     <div className={classes.Button}>
-    //       <button onClick={props.deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
+    //       <button onClick={this.props.cocktails.deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
     //       </div>
     //   </div>
     // </div>
-    <h1>hello</h1>
-  );
+    
+  // );
 };
 
-export default withRouter(Cocktail);
+const mapStateToProps = (state) => {
+  return {
+    cocktails: state.cocktails
+  }
+}
+
+export default connect(mapStateToProps,null)(withRouter(Cocktail));

@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         cocktails: action.cocktails
       };
+
+    case actionType.POST_COCKTAILS:
+      return {
+        ...state
+      }
     default:
       return state;
   }

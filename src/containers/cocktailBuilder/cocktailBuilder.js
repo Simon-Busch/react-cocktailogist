@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axiosFireBase from '../../axios-cocktail';
-import axios from 'axios'
+import axios from 'axios';
 import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer';
@@ -17,7 +17,6 @@ import { withRouter, Switch, Route } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
-// import * as actionType from '../../store/action';
 
 
 class CocktailBuilder extends Component {
@@ -28,25 +27,6 @@ class CocktailBuilder extends Component {
 
   componentDidMount () {
     this.props.onFetching('cocktail')
-  }
-
-  postDataHandler = () => {
-    const currentState = {
-      ...this.state
-    }
-    axiosFireBase.post('/cocktails.json', currentState)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
-  }
-
-  // TO DO
-  deleteHandle = (id) => {
-    // console.log(id)
-    const oldState = this.state.cocktails
-    console.log(oldState)
-    oldState.slice(id, 1)
-    
-    this.setState({oldState})
   }
 
   inputHandler = (event) =>  {
@@ -70,7 +50,6 @@ class CocktailBuilder extends Component {
             glass={cocktail.glass}
             instruction={cocktail.instruction}
             ingredients={cocktail.ingredient}
-            // deleteCocktail={() => this.deleteHandle(cocktail.id)}
           />
       ))
     } else {
@@ -80,7 +59,7 @@ class CocktailBuilder extends Component {
     return (
       <Fragment>
         <div style={{textAlign:'center'}}>
-          <Button text="Send to firebase" clicked={this.postDataHandler} btnType="Main"/>
+          <Button text="Send to firebase" clicked={this.props.onPosting()} btnType="Main"/>
           <div className={classes.Top}>
             <Input label="Select an option" change={this.inputHandler}/>
             <Button text="Find your 🍸" clicked={() => this.props.onFetching(this.state.inputValue)} btnType="Main"/>
@@ -106,9 +85,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetching: (ingredient) => dispatch(actionCreators.fetchCocktails(ingredient))
+    onFetching: (ingredient) => dispatch(actionCreators.fetchCocktails(ingredient)),
+    onPosting: () => dispatch(actionCreators.postCocktails())
   }
 }
-// actionType
 
 export default connect(mapStateToProps,mapDispatchToProps)(withRouter(CocktailBuilder));

@@ -1,6 +1,10 @@
 import axios from 'axios';
+import axiosFireBase from '../axios-cocktail';
 export const FETCH_COCKTAILS = 'FETCH_COCKTAILS';
+export const POST_COCKTAILS = 'POST_COCKTAILS';
+// export const DELETE_COCKTAIL = 'DELETE_COCKTAIL';
 
+//sync
 export const fetchedCocktails = (response ) => {
   return {
     type: FETCH_COCKTAILS,
@@ -8,6 +12,7 @@ export const fetchedCocktails = (response ) => {
   }
 }
 
+//async
 export const fetchCocktails = (ingredient) => {
   return (dispatch) => {
     const cocktailArray = []
@@ -39,3 +44,27 @@ export const fetchCocktails = (ingredient) => {
     })
   }
 }
+
+//sync
+export const postedCocktails = () => {
+  return {
+    type: POST_COCKTAILS
+  }
+}
+
+//async
+export const postCocktails = () => {
+  return (dispatch, getState) => {
+    const state = getState().cocktails
+
+    axiosFireBase.post('/cocktails.json', state)
+      .then(response => dispatch(postedCocktails()))
+      .catch(error => console.log(error))
+  }
+}
+
+// export const deleteCocktail = (id) => {
+//   return (dispatch) => {
+
+//   }
+// }

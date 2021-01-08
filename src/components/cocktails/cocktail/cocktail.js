@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import classes from './cocktail.module.css';
-
 import { withRouter } from 'react-router-dom';
-// import { useLocation, useParams } from "react-router";
-
 //redux
 import { connect } from 'react-redux';
 
 class Cocktail extends Component {
-  
+  // deleteHandle = (id) => {
+  //   const oldState = this.state.cocktails
+  //   console.log(oldState)
+  //   oldState.slice(id, 1)
+    
+  //   this.setState({oldState})
+  // }
   
   render() {
-    //get id
     const id = this.props.match.params.id
 
     //find index
@@ -28,10 +30,8 @@ class Cocktail extends Component {
 
     //return my full cocktail array
     let cocktailArray = this.props.cocktails
-
     //return the cocktail to display
     let cktlIndex = findIndexInData(cocktailArray,'id', id)
-    
     // return ingredient array
     let ingredientItems = Object.keys(this.props.cocktails[cktlIndex].ingredient)
       .map(ingredientKey => {
@@ -66,8 +66,8 @@ class Cocktail extends Component {
             <p><em>{this.props.cocktails[cktlIndex].instruction}</em></p>
           </div>
           <div className={classes.Button}>
-            <button onClick={this.props.cocktails[cktlIndex].deleteCocktail} className={classes.ButtonDelete}> ❌ </button>
-            </div>
+            {/* <button onClick={this.props.cocktails[cktlIndex].deleteCocktail} className={classes.ButtonDelete}> ❌ </button> */}
+          </div>
         </div>
     </div>
     )

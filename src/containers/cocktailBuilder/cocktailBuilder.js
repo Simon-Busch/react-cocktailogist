@@ -38,7 +38,6 @@ class CocktailBuilder extends Component {
   }
 
   render() {
-    // console.log(this.props)
     let cocktailCont = null;
     if (this.props.cocktails.length > 0) {
       cocktailCont = this.props.cocktails.map(cocktail => (
@@ -59,11 +58,10 @@ class CocktailBuilder extends Component {
     return (
       <Fragment>
         <div style={{textAlign:'center'}}>
-          <Button text="Send to firebase" clicked={this.props.onPosting()} btnType="Main"/>
+          {/* <Button text="Send to firebase" clicked={this.props.onPosting()} btnType="Main"/> */}
           <div className={classes.Top}>
             <Input label="Select an option" change={this.inputHandler}/>
             <Button text="Find your 🍸" clicked={() => this.props.onFetching(this.state.inputValue)} btnType="Main"/>
-            {/* {this.state.buttonShow ? <Button text="Find your 🍸" clicked={this.props.onFetching()} btnType="Main"/> : null} */}
           </div>
           <CocktailContainer >
             {cocktailCont}

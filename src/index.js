@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 // import Header from './components/UI/header/header';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducer from './store/reducer';
+import reducer from './store/reducers/reducer';
 //handle async call
 import thunk from 'redux-thunk';
 

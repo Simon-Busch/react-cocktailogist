@@ -1,19 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import axiosFireBase from '../../axios-cocktail';
-import axios from 'axios';
 import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
 import CocktailContainer from '../../hoc/CocktailContainer/CocktailContainer';
-
 import classes from './cocktailBuilder.module.css';
-import Cocktail from '../../components/cocktails/cocktail/cocktail';
 import Input from '../../components/UI/input/input';
 
 //action
-import * as actionCreators from '../../store/action';
+import * as actionCreators from '../../store/actions/action';
 
 //routing
-import { withRouter, Switch, Route } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 //redux
 import { connect } from 'react-redux';
@@ -58,7 +54,7 @@ class CocktailBuilder extends Component {
     return (
       <Fragment>
         <div style={{textAlign:'center'}}>
-          {/* <Button text="Send to firebase" clicked={this.props.onPosting()} btnType="Main"/> */}
+          <Button text="Send to firebase" clicked={this.props.onPosting} btnType="Main"/>
           <div className={classes.Top}>
             <Input label="Select an option" change={this.inputHandler}/>
             <Button text="Find your 🍸" clicked={() => this.props.onFetching(this.state.inputValue)} btnType="Main"/>

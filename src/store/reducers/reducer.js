@@ -1,4 +1,4 @@
-import * as actionType from './action';
+import * as actionType from '../actions/actions';
 
 const initialState = {
   cocktails: [
@@ -16,7 +16,8 @@ const initialState = {
       }
     }
   ],
-  buttonShow: true
+  cocktail: [],
+  savedCocktails: []
 } 
 
 const reducer = (state = initialState, action) => {
@@ -26,8 +27,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         cocktails: action.cocktails
       };
-
+      case actionType.FETCH_ONE_COCKTAIL:
+        return {
+          ...state,
+          cocktail: action.cocktail
+        };
     case actionType.POST_COCKTAILS:
+      return {
+        ...state
+      }
+    case actionType.SAVE_COCKTAIL:
       return {
         ...state
       }

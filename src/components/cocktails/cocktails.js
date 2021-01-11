@@ -1,10 +1,8 @@
 import React, {Fragment} from 'react';
 import classes from './cocktails.module.css';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom';
 
 const cocktails = (props) => {
-  console.log(props);
-
   return (
     <Fragment>
       <Link to={`/${props.id}`} className={classes.Link}>

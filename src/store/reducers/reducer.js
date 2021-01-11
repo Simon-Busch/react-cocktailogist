@@ -36,9 +36,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state
       }
+      //not working !
     case actionType.SAVE_COCKTAIL:
       return {
         ...state
+      }
+      //to be fixed
+    case actionType.FETCH_SAVED_COCKTAILS:
+      console.log('coucou')
+      return {
+        ...state,
+        savedCocktails: action.savedCocktails
       }
     default:
       return state;

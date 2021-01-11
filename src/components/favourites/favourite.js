@@ -1,4 +1,6 @@
 import React from 'react';
+// import Cocktail from '../cocktails/cocktail/cocktail';
+import { connect } from 'react-redux';
 
 const favourite = () => {
   return (
@@ -8,4 +10,10 @@ const favourite = () => {
   );
 };
 
-export default favourite;
+const mapStateToProps = (state) => {
+  return {
+    cocktail: state.savedCocktails
+  }
+}
+
+export default  connect(mapStateToProps, null)(favourite);

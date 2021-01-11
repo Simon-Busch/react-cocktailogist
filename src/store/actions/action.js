@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosFireBase from '../../axios-cocktail';
 import * as actions from './actions';
-
+import toast, { Toaster } from 'react-hot-toast';
 
 //sync
 export const fetchedCocktails = (response) => {
@@ -125,4 +125,30 @@ export const saveCocktail = (cocktail) => {
 
 
 // ADD FECTCHING FAVORITE COCKTAILS ON LOADING
+export const fetchedSavedCocktails = (response) => {
+  return {
+    type: actions.FETCH_SAVED_COCKTAILS,
+    savedCocktails: response
+  }
+}
 
+export const fetchSavedCocktails = () => {
+  return (dispatch) => {
+    const cocktailArray = []
+    axiosFireBase.get('/saved-cocktails.json')
+    .then(response => {
+      response.data.drinks.forEach(cocktail => {
+        cocktailArray.push(cocktail)
+      })
+      let cocktailsArrayFinal = Object.keys(cocktailArray)
+        .map(cocktailKey => {
+            return [...Array(cocktailArray[cocktailKey])]
+        })
+      dispatch(fetchedSavedCocktails(cocktailsArrayFinal.flat()))
+      
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+}

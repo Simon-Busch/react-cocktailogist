@@ -22,7 +22,8 @@ class CocktailBuilder extends Component {
   }
 
   componentDidMount () {
-    this.props.onFetching('cocktail')
+    this.props.onFetching('cocktail');
+    this.props.onFetchingSavedCocktails();
   }
 
   inputHandler = (event) =>  {
@@ -77,7 +78,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetching: (ingredient) => dispatch(actionCreators.fetchCocktails(ingredient)),
-    onPosting: () => dispatch(actionCreators.postCocktails())
+    onPosting: () => dispatch(actionCreators.postCocktails()),
+    onFetchingSavedCocktails: () => dispatch(actionCreators.fetchSavedCocktails())
   }
 }
 

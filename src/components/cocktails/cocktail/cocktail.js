@@ -2,44 +2,26 @@ import React, { Component, Fragment } from 'react';
 import classes from './cocktail.module.css';
 import { withRouter } from 'react-router-dom';
 import Button from '../../UI/button/button';
+import { findIndexInData } from '../../../utility/findIndexInData';
+import axiosFireBase from '../../../axios-cocktail';
 //redux
 import { connect } from 'react-redux';
-
 import * as actions from '../../../store/actions/action';
-
-import axiosFireBase from '../../../axios-cocktail';
+import toast, { Toaster } from 'react-hot-toast';
 
 class Cocktail extends Component {
-
   postHandler = (cocktail)  => {
     axiosFireBase.post('/saved-cocktails.json', cocktail)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
+      .then(response => toast.success('Successfully saved!'))
+      .catch(error => toast.error("This didn't work."))
   }
 
   render() {
-    const id = this.props.match.params.id
-
-    //find index
-    const findIndexInData = (data, property, value) => {
-      let result = -1;
-      data.some((item, i) => {
-          if (item[property] === value) {
-              result = i;
-              return true;
-          }
-      });
-      return result;
-    }
-
-    //return my full cocktail array
-    let cocktailArray = this.props.cocktails
     //return the cocktail to display
-    let cktlIndex = findIndexInData(cocktailArray,'id', id)
+    let cktlIndex = findIndexInData(this.props.cocktails,'id', this.props.match.params.id)
     let ingredientItems;
-    let check = this.props.cocktails[cktlIndex];
-    // return ingredient array
-    if (check) {
+
+    if (this.props.cocktails[cktlIndex]) {
       ingredientItems = Object.keys(this.props.cocktails[cktlIndex].ingredient)
       .map(ingredientKey => {
         return [...Array(this.props.cocktails[cktlIndex].ingredient[ingredientKey])].map(
@@ -51,36 +33,13 @@ class Cocktail extends Component {
             </li> 
           }
         )
-      }).reduce((arr, el) => {
-        return arr.concat(el)
-      }, [])
+      }).reduce((arr, el) =>  arr.concat(el), [])
     }
-
-    // const cocktailArr = []
-    // axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
-    // .then(response => {
-    //   // console.log(response.data.drinks);
-    //     cocktailArr.push({
-    //       id: response.data.drinks[0].idDrink, 
-    //       name: response.data.drinks[0].strDrink,
-    //       picture: response.data.drinks[0].strDrinkThumb,
-    //       glass: response.data.drinks[0].strGlass,
-    //       instruction: response.data.drinks[0].strInstructions,
-    //       ingredient: {
-    //         firstIng: response.data.drinks[0].strIngredient1,
-    //         secondIng: response.data.drinks[0].strIngredient2,
-    //         thirdIng: response.data.drinks[0].strIngredient3,
-    //         fourthIng: response.data.drinks[0].strIngredient4
-    //       }
-    //     })
-    //   })
-    // .catch(error => {
-    //   console.log(error)
-    // })
       
     return (
       <Fragment>
-      {check ? 
+      <div><Toaster/></div>
+      {this.props.cocktails[cktlIndex] ? 
         <div className={classes.CocktailFlex}>
           <div className={classes.CocktailFlexLeft}>
             <img src={this.props.cocktails[cktlIndex].picture} alt={this.props.cocktails[cktlIndex].name} className={classes.CocktailImg}/>

@@ -69,3 +69,14 @@
     font-size: 16px;
   }
 }
+
+.Link {
+  text-decoration: none;
+  color:rgb(248, 136, 32);
+  font-size: 15px;
+  text-transform: uppercase;
+  z-index: 300;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

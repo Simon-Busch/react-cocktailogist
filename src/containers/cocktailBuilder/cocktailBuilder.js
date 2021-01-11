@@ -3,7 +3,7 @@ import axiosFireBase from '../../axios-cocktail';
 import axios from 'axios';
 import Cocktails from '../../components/cocktails/cocktails';
 import Button from '../../components/UI/button/button';
-import CocktailContainer from '../../hoc/CocktailContainer';
+import CocktailContainer from '../../hoc/CocktailContainer/CocktailContainer';
 
 import classes from './cocktailBuilder.module.css';
 import Cocktail from '../../components/cocktails/cocktail/cocktail';
@@ -67,9 +67,6 @@ class CocktailBuilder extends Component {
             {cocktailCont}
           </CocktailContainer>
         </div>
-        <Switch>
-          <Route path="/cocktails/:id" component={Cocktail} />
-        </Switch>
       </Fragment>
     );
   }

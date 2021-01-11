@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import classes from './cocktails.module.css';
-import { withRouter, Switch, Route, Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 const cocktails = (props) => {
   console.log(props);

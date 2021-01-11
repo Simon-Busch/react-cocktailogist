@@ -3,7 +3,7 @@ import classes from './button.module.css';
 
 const button = (props) => {
   const classButton = [classes.Button];
-  classButton.push(props.classButton)
+  classButton.push(props.btnType)
   return (
     <div>
       <button onClick={props.clicked} 

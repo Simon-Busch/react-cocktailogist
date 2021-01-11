@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import classes from './cocktail.module.css';
 import { withRouter } from 'react-router-dom';
+import Button from '../../UI/button/button';
 //redux
 import { connect } from 'react-redux';
 
-class Cocktail extends Component {
-  // deleteHandle = (id) => {
-  //   const oldState = this.state.cocktails
-  //   console.log(oldState)
-  //   oldState.slice(id, 1)
-    
-  //   this.setState({oldState})
-  // }
-  
+class Cocktail extends Component {  
   render() {
     const id = this.props.match.params.id
 
@@ -32,8 +25,11 @@ class Cocktail extends Component {
     let cocktailArray = this.props.cocktails
     //return the cocktail to display
     let cktlIndex = findIndexInData(cocktailArray,'id', id)
+    let ingredientItems;
+    let check = this.props.cocktails[cktlIndex]
     // return ingredient array
-    let ingredientItems = Object.keys(this.props.cocktails[cktlIndex].ingredient)
+    if (check) {
+      ingredientItems = Object.keys(this.props.cocktails[cktlIndex].ingredient)
       .map(ingredientKey => {
         return [...Array(this.props.cocktails[cktlIndex].ingredient[ingredientKey])].map(
           (ingredient) => {
@@ -47,6 +43,8 @@ class Cocktail extends Component {
       }).reduce((arr, el) => {
         return arr.concat(el)
       }, [])
+    }
+    
 
     return (
       <div className={classes.CocktailFlex}>
@@ -67,6 +65,10 @@ class Cocktail extends Component {
           </div>
           <div className={classes.Button}>
             {/* <button onClick={this.props.cocktails[cktlIndex].deleteCocktail} className={classes.ButtonDelete}> ❌ </button> */}
+          </div>
+          <div style={{margin: 'auto'}}>
+            <Button text="Add to your favorite ⭐️" 
+              btnType="Like"/>
           </div>
         </div>
     </div>

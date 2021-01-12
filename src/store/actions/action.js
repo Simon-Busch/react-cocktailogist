@@ -116,7 +116,6 @@ export const savedCocktail = () => {
 //async
 export const saveCocktail = (cocktail) => {
   return (dispatch) => {
-
     axiosFireBase.post('/saved-cocktails.json', cocktail)
       .then(response => dispatch(savedCocktail()))
       .catch(error => console.log(error))

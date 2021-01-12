@@ -4,12 +4,14 @@ import { withRouter } from 'react-router-dom';
 import Button from '../../UI/button/button';
 import { findIndexInData } from '../../../utility/findIndexInData';
 import axiosFireBase from '../../../axios-cocktail';
+import {getIngredients} from '../../../utility/getIngredients';
+import toast, { Toaster } from 'react-hot-toast';
 //redux
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/action';
-import toast, { Toaster } from 'react-hot-toast';
 
-import {getIngredients} from '../../../utility/getIngredients';
+
+
 
 class Cocktail extends Component {
   postHandler = (cocktail)  => {
@@ -22,7 +24,7 @@ class Cocktail extends Component {
     //return the cocktail to display
     let cktlIndex = findIndexInData(this.props.cocktails,'id', this.props.match.params.id)
     //get list of ingredients
-    let ingredientItems = getIngredients (this.props.cocktails[cktlIndex]);
+    let ingredientItems = getIngredients(this.props.cocktails[cktlIndex]);
       
     return (
       <Fragment>
@@ -30,7 +32,9 @@ class Cocktail extends Component {
       {this.props.cocktails[cktlIndex] ? 
         <div className={classes.CocktailFlex}>
           <div className={classes.CocktailFlexLeft}>
-            <img src={this.props.cocktails[cktlIndex].picture} alt={this.props.cocktails[cktlIndex].name} className={classes.CocktailImg}/>
+            <img src={this.props.cocktails[cktlIndex].picture} 
+              alt={this.props.cocktails[cktlIndex].name} 
+              className={classes.CocktailImg}/>
           </div>
           <div className={classes.CocktailFlexRight}>
             <div className={classes.CocktailFlexTop}>
@@ -60,17 +64,16 @@ class Cocktail extends Component {
   }
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cocktails: state.cocktails
+  const mapStateToProps = (state) => {
+    return {
+      cocktails: state.cocktails
+    }
   }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSaveCocktail: () => dispatch((cocktail) => actions.saveCocktail(cocktail))
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      onSaveCocktail: () => dispatch((cocktail) => actions.saveCocktail(cocktail))
+    }
   }
-}
-// make the binding to dispatch the action ! 
 
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Cocktail));
+  export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Cocktail));

@@ -10,7 +10,7 @@ const asyncCocktail = asyncComponents(() => {
 })
 
 const asyncFavourite = asyncComponents(() => {
-  return import('./components/favourites/favourite');
+  return import('./containers/Favourites/favourite');
 })
 
 

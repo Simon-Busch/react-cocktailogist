@@ -55,7 +55,7 @@ class CocktailBuilder extends Component {
     return (
       <Fragment>
         <div style={{textAlign:'center'}}>
-          <Button text="Send to firebase" clicked={this.props.onPosting} btnType="Main"/>
+          {/* <Button text="Send to firebase" clicked={this.props.onFetchingSavedCocktails} btnType="Main"/> */}
           <div className={classes.Top}>
             <Input label="Select an option" change={this.inputHandler}/>
             <Button text="Find your 🍸" clicked={() => this.props.onFetching(this.state.inputValue)} btnType="Main"/>

@@ -17,7 +17,7 @@ const initialState = {
     }
   ],
   cocktail: [],
-  savedCocktails: []
+  savedCocktails: null
 } 
 
 const reducer = (state = initialState, action) => {
@@ -43,7 +43,6 @@ const reducer = (state = initialState, action) => {
       }
       //to be fixed
     case actionType.FETCH_SAVED_COCKTAILS:
-      console.log('coucou')
       return {
         ...state,
         savedCocktails: action.savedCocktails

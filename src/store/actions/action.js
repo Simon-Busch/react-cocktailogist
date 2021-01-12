@@ -1,7 +1,7 @@
 import axios from 'axios';
 import axiosFireBase from '../../axios-cocktail';
 import * as actions from './actions';
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 
 //sync
 export const fetchedCocktails = (response) => {
@@ -135,17 +135,19 @@ export const fetchedSavedCocktails = (response) => {
 export const fetchSavedCocktails = () => {
   return (dispatch) => {
     const cocktailArray = []
-    axiosFireBase.get('/saved-cocktails.json')
+    axiosFireBase.get('https://cocktail-react-default-rtdb.firebaseio.com/saved-cocktails.json')
     .then(response => {
-      response.data.drinks.forEach(cocktail => {
+      let test = Object.keys(response.data)
+        .map(cocktail => {
+          return [...Array(response.data[cocktail])]
+        }).reduce((arr, el) => {
+          return arr.concat(el)
+        }, [])
+      test.forEach(cocktail => {
         cocktailArray.push(cocktail)
       })
-      let cocktailsArrayFinal = Object.keys(cocktailArray)
-        .map(cocktailKey => {
-            return [...Array(cocktailArray[cocktailKey])]
-        })
-      dispatch(fetchedSavedCocktails(cocktailsArrayFinal.flat()))
-      
+      // console.log(typeof cocktailArray) // object
+      dispatch(fetchedSavedCocktails(cocktailArray.flat()))
     })
     .catch(error => {
       console.log(error)

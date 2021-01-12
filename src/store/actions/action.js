@@ -124,7 +124,7 @@ export const saveCocktail = (cocktail) => {
 }
 
 
-// ADD FECTCHING FAVORITE COCKTAILS ON LOADING
+// sync
 export const fetchedSavedCocktails = (response) => {
   return {
     type: actions.FETCH_SAVED_COCKTAILS,
@@ -132,6 +132,7 @@ export const fetchedSavedCocktails = (response) => {
   }
 }
 
+// async
 export const fetchSavedCocktails = () => {
   return (dispatch) => {
     const cocktailArray = []

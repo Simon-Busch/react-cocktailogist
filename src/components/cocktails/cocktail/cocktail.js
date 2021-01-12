@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/action';
 import toast, { Toaster } from 'react-hot-toast';
 
+import {getIngredients} from '../../../utility/getIngredients';
+
 class Cocktail extends Component {
   postHandler = (cocktail)  => {
     axiosFireBase.post('/saved-cocktails.json', cocktail)
@@ -19,22 +21,8 @@ class Cocktail extends Component {
   render() {
     //return the cocktail to display
     let cktlIndex = findIndexInData(this.props.cocktails,'id', this.props.match.params.id)
-    let ingredientItems;
-
-    if (this.props.cocktails[cktlIndex]) {
-      ingredientItems = Object.keys(this.props.cocktails[cktlIndex].ingredient)
-      .map(ingredientKey => {
-        return [...Array(this.props.cocktails[cktlIndex].ingredient[ingredientKey])].map(
-          (ingredient) => {
-            return <li key={ingredient}>
-              <em>
-              {ingredient}
-              </em>
-            </li> 
-          }
-        )
-      }).reduce((arr, el) =>  arr.concat(el), [])
-    }
+    //get list of ingredients
+    let ingredientItems = getIngredients (this.props.cocktails[cktlIndex]);
       
     return (
       <Fragment>
